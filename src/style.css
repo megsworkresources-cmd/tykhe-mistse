@@ -348,3 +348,11 @@ h1,h2,h3{line-height:1.22}
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
+
+/* Structural hero fix: keep label in a separate normal-flow row below title. */
+#hero .hero-copy > h1{order:0;margin-bottom:12px}
+#hero .hero-copy > .hero-eyebrow-after-title{display:flex;position:relative;z-index:1;order:1;flex:0 0 auto;width:100%;min-height:18px;margin:0 0 24px;line-height:1.6;overflow:visible}
+#hero .hero-copy > .hero-desc{order:2}
+#hero .hero-copy > .hero-actions{order:3}
+#hero .hero-copy > .trust-line{order:4}
+@media(max-width:800px){#hero .hero-copy > h1{margin-top:0;margin-bottom:12px}#hero .hero-copy > .hero-eyebrow-after-title{margin:0 0 24px}}
