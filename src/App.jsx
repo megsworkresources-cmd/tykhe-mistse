@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const features = [
   {
     icon: '🌿',
@@ -43,7 +45,7 @@ const steps = [
 const faq = [
   {
     q: 'Чи це замінює допомогу дорослого?',
-    a: 'Ні. Це інструмент підтримки, а не заміна професійної допомоги або більш глибокого контакту з дорослим, який може допомогти.'
+    a: 'Ні. Це інструмент підтримки, а не заміна професійної допомоги або більш глибокого контакту з дорослим.'
   },
   {
     q: 'Чи можна використовувати без реєстрації?',
@@ -78,21 +80,63 @@ const worldCards = [
   }
 ]
 
+const navItems = [
+  'Головна',
+  'Активності',
+  'Перевірка',
+  'Допомога',
+  'Для дорослих',
+  'Про проект'
+]
+
+const sectionMap = {
+  Головна: 'home',
+  Активності: 'activities',
+  Перевірка: 'check-in',
+  Допомога: 'help',
+  'Для дорослих': 'adults',
+  'Про проект': 'about'
+}
+
 function App() {
+  const [activeNav, setActiveNav] = useState('Головна')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [language, setLanguage] = useState('UA')
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    setMenuOpen(false)
+  }
+
+  const handleNavClick = (label) => {
+    setActiveNav(label)
+    const sectionId = sectionMap[label]
+    if (sectionId) {
+      scrollToSection(sectionId)
+    }
+  }
+
+  const toggleLanguage = () => {
+    setLanguage((current) => (current === 'UA' ? 'EN' : 'UA'))
+  }
+
   return (
-    <div>
+    <div id="home">
       <div className="top-note">
         <span className="sun-dot">✦</span>
         <span>Тихе місце — український дитячий простір підтримки</span>
         <div className="top-lang">
-          <button type="button" aria-label="Мова">
-            <span>UA</span>
+          <button type="button" aria-label="Мова" onClick={toggleLanguage}>
+            <span>{language}</span>
           </button>
         </div>
       </div>
 
       <header className="header">
-        <button type="button" className="brand" aria-label="Головна">
+        <button type="button" className="brand" aria-label="Головна" onClick={() => handleNavClick('Головна')}>
           <span className="brand-mark">✦</span>
           <span>
             Тихе <span className="brand-light">місце</span>
@@ -100,28 +144,38 @@ function App() {
           </span>
         </button>
 
-        <nav className="nav" aria-label="Основна навігація">
-          <button type="button" className="nav-active">Головна</button>
-          <button type="button">Активності</button>
-          <button type="button">Перевірка</button>
-          <button type="button">Допомога</button>
-          <button type="button">Для дорослих</button>
-          <button type="button">Про проект</button>
+        <nav className={`nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Основна навігація">
+          {navItems.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={activeNav === item ? 'nav-active' : ''}
+              onClick={() => handleNavClick(item)}
+            >
+              {item}
+            </button>
+          ))}
         </nav>
 
         <div className="head-actions">
-          <button type="button" className="help-pill">
+          <button type="button" className="help-pill" onClick={() => scrollToSection('help')}>
             <span>🫶</span>
             Допомога зараз
           </button>
-          <button type="button" className="menu-toggle" aria-label="Menu">
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
             ☰
           </button>
         </div>
       </header>
 
       <main>
-        <section className="hero wrap">
+        <section className="hero wrap" id="hero">
           <div className="hero-copy">
             <div className="eyebrow">
               <span />
@@ -138,8 +192,12 @@ function App() {
             </p>
 
             <div className="hero-actions">
-              <button type="button" className="btn btn-primary">Почати</button>
-              <button type="button" className="btn btn-quiet">Подивитись активності</button>
+              <button type="button" className="btn btn-primary" onClick={() => scrollToSection('check-in')}>
+                Почати
+              </button>
+              <button type="button" className="btn btn-quiet" onClick={() => scrollToSection('activities')}>
+                Подивитись активності
+              </button>
             </div>
 
             <div className="trust-line">
@@ -171,7 +229,7 @@ function App() {
           </div>
         </section>
 
-        <div className="feeling-strip">
+        <div className="feeling-strip" id="check-in">
           <div className="wrap strip-inner">
             <span>Як ти себе почуваєш зараз?</span>
             <span className="feeling-word">Спокійно</span>
@@ -181,7 +239,7 @@ function App() {
           </div>
         </div>
 
-        <section className="section wrap">
+        <section className="section wrap" id="activities">
           <div className="section-heading">
             <h2>Що тут є</h2>
             <p>Невеликий і чіткий набір інструментів підтримки — без складних правил і без зайвого тиску.</p>
@@ -194,7 +252,7 @@ function App() {
                 <div className="card-index">{feature.index}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
-                <button type="button" className="text-link">
+                <button type="button" className="text-link" onClick={() => scrollToSection('help')}>
                   Дізнатись більше <span>→</span>
                 </button>
               </article>
@@ -226,14 +284,14 @@ function App() {
           </div>
         </section>
 
-        <section className="wrap">
+        <section className="wrap" id="adults">
           <div className="adult-callout">
             <div>
               <h2>Для дорослих</h2>
               <p>
                 Тут не про “виправлення” емоцій дитини, а про підтримку, паузу й безпечний вибір.
                 Вправа працює краще, коли вона не викликає страху і не ставить дитину перед
-                обов’язком ��подавати правильну реакцію”.
+                обов’язком не подавати правильну реакцію.
               </p>
             </div>
 
@@ -252,7 +310,7 @@ function App() {
           </div>
         </section>
 
-        <section className="faq-section">
+        <section className="faq-section" id="help">
           <div className="wrap faq-wrap">
             <div>
               <div className="page-eyebrow">
@@ -283,13 +341,15 @@ function App() {
               <span>Готовність до наступного кроку</span>
             </div>
             <h2>Почніть із малого — з одного спокійного моменту.</h2>
-            <p>Це чернетка, тому вона все ще потребує технічної перевірки, доступності та експертного перегляду перед публікацією.</p>
+            <p>Це чернетка, тому вона все ще потребує технічної перевірки, доступності та експертного перегляду, але вже готова до короткого практичного використання.</p>
           </div>
           <div className="final-sun">☼</div>
-          <button type="button" className="btn btn-dark">Знайти підтримку</button>
+          <button type="button" className="btn btn-dark" onClick={() => scrollToSection('help')}>
+            Знайти підтримку
+          </button>
         </section>
 
-        <section className="world-section wrap">
+        <section className="world-section wrap" id="about">
           <div className="section-heading">
             <h2>Ілюстрований світ</h2>
             <p>Невеликі образи, які допомагають дитині відчути різні типи спокою, підтримки й уваги.</p>
@@ -330,10 +390,10 @@ function App() {
 
         <div className="footer-links">
           <strong>Навігація</strong>
-          <button type="button">Головна</button>
-          <button type="button">Активності</button>
-          <button type="button">Допомога</button>
-          <button type="button">Контакт</button>
+          <button type="button" onClick={() => handleNavClick('Головна')}>Головна</button>
+          <button type="button" onClick={() => handleNavClick('Активності')}>Активності</button>
+          <button type="button" onClick={() => handleNavClick('Допомога')}>Допомога</button>
+          <button type="button" onClick={() => scrollToSection('help')}>Контакт</button>
         </div>
 
         <div className="footer-links">
@@ -341,7 +401,7 @@ function App() {
           <button type="button">Приватність</button>
           <button type="button">Доступність</button>
           <button type="button">Умови</button>
-          <button type="button">Про проект</button>
+          <button type="button" onClick={() => handleNavClick('Про проект')}>Про проект</button>
         </div>
 
         <div className="footer-bottom">
@@ -350,7 +410,7 @@ function App() {
         </div>
       </footer>
 
-      <button type="button" className="floating-help">
+      <button type="button" className="floating-help" onClick={() => scrollToSection('help')}>
         <span>🫶</span> Допомога зараз
       </button>
     </div>
