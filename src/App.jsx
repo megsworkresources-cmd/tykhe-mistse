@@ -80,6 +80,13 @@ const worldCards = [
   }
 ]
 
+const watchClips = [
+  { title: 'Хмари, що пливуть', category: 'НЕБО · ПОВІЛЬНИЙ РУХ', description: 'Просто спостерігай, як змінюються форми й тіні.', src: 'https://videos.pexels.com/video-files/855787/855787-hd_1920_1080_25fps.mp4', poster: '/artwork/thought-thread.svg', symbol: '☁️' },
+  { title: 'Тихий зелений світ', category: 'ПРИРОДА · ДЕТАЛІ', description: 'Знайди очима одну деталь і дозволь погляду відпочити.', src: 'https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_25fps.mp4', poster: '/artwork/house-you-carry.svg', symbol: '🌿' },
+  { title: 'Вода в русі', category: 'ВОДА · М’ЯКІ ВІЗЕРУНКИ', description: 'Слідкуй за візерунками води без завдання щось робити.', src: 'https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4', poster: '/artwork/pebble-listener.svg', symbol: '〰️' },
+  { title: 'Маленький всесвіт', category: 'УЯВА · ПАУЗА', description: 'Уяви, що в тебе є цілий простір для тихої перерви.', src: 'https://videos.pexels.com/video-files/855787/855787-hd_1920_1080_25fps.mp4', poster: '/artwork/listening-staircase.svg', symbol: '✨' }
+]
+
 const navItems = [
   'Головна',
   'Активності',
@@ -111,6 +118,8 @@ function App() {
   const [brushSize, setBrushSize] = useState(5)
   const [isDrawing, setIsDrawing] = useState(false)
   const [showVisuals, setShowVisuals] = useState(true)
+  const [activeWatch, setActiveWatch] = useState(0)
+  const [watchFocus, setWatchFocus] = useState(false)
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -315,6 +324,31 @@ function App() {
           <p>Не все треба виправляти одразу. Достатньо лише на мить відчути себе в безпеці.</p>
           <span>— філософія Тихого місця</span>
           <div className="quote-flower">✿</div>
+        </section>
+
+        <section className="watch-section" id="watch">
+          <div className="wrap">
+            <div className="section-heading watch-heading">
+              <div><div className="page-eyebrow"><span>ВІЗУАЛЬНА ПЕРЕРВА</span></div><h2>Місце, де можна <em>загубитися у спокої</em></h2></div>
+              <p>Обери рухомий світ, увімкни на весь екран або просто спостерігай. Звук вимкнений за замовчуванням — ти керуєш переглядом.</p>
+            </div>
+            <div className={watchFocus ? 'watch-experience focus-mode' : 'watch-experience'}>
+              <div className="watch-player-wrap">
+                <video key={watchClips[activeWatch].src + activeWatch} className="watch-player" controls playsInline loop muted preload="metadata" poster={watchClips[activeWatch].poster} aria-label={watchClips[activeWatch].title}>
+                  <source src={watchClips[activeWatch].src} type="video/mp4" />
+                  Ваш браузер не підтримує вбудоване відео.
+                </video>
+                <div className="watch-player-caption"><span>{watchClips[activeWatch].symbol} {watchClips[activeWatch].category}</span><strong>{watchClips[activeWatch].title}</strong><p>{watchClips[activeWatch].description}</p></div>
+                <button type="button" className="watch-focus-toggle" aria-pressed={watchFocus} onClick={() => setWatchFocus(v => !v)}>{watchFocus ? 'Повернути меню' : 'Зануритися у перегляд'} <span aria-hidden="true">{watchFocus ? '↙' : '↗'}</span></button>
+              </div>
+              {!watchFocus && <div className="watch-choices" aria-label="Обрати відеосвіт">
+                {watchClips.map((clip, index) => <button type="button" key={clip.title} className={activeWatch === index ? 'watch-choice watch-choice-active' : 'watch-choice'} aria-pressed={activeWatch === index} onClick={() => setActiveWatch(index)}>
+                  <span className="watch-choice-art" aria-hidden="true">{clip.symbol}<i /></span><span className="watch-choice-copy"><small>{clip.category}</small><strong>{clip.title}</strong><span>{clip.description}</span></span><span className="watch-choice-arrow" aria-hidden="true">{activeWatch === index ? '●' : '↗'}</span>
+                </button>)}
+              </div>}
+            </div>
+            <div className="watch-reminder"><span aria-hidden="true">✦</span> Можна дивитися, змінити відео, зробити паузу або закрити розділ у будь-який момент.</div>
+          </div>
         </section>
 
         <section className="section wrap">
