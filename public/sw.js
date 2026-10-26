@@ -1,4 +1,4 @@
-const CACHE = 'tykhe-mistse-v2'
+const CACHE = 'tykhe-mistse-v3'
 const STATIC_ASSETS = ['/manifest.webmanifest', '/icon.svg']
 
 self.addEventListener('install', (event) => {
