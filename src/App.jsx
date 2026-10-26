@@ -144,7 +144,7 @@ function App() {
           </span>
         </button>
 
-        <nav className={`nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Основна навігація">
+        <nav className={`nav ${menuOpen ? 'open' : ''}`} aria-label="Основна навігація">
           {navItems.map((item) => (
             <button
               key={item}
