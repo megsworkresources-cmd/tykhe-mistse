@@ -464,7 +464,7 @@ function App() {
             <p>Обери коротку вправу, потренуй навичку або малюй у власному темпі. Будь-яку активність можна пропустити.</p>
           </div>
           <div className="final-sun">☼</div>
-          <button type="button" className="btn btn-dark" onClick={() => scrollToSection('help')}>
+          <button type="button" className="btn btn-dark" onClick={() => scrollToSection('resources')}>
             Знайти підтримку
           </button>
         </section>
@@ -513,10 +513,27 @@ function App() {
           <button type="button" onClick={() => handleNavClick('Головна')}>Головна</button>
           <button type="button" onClick={() => handleNavClick('Активності')}>Активності</button>
           <button type="button" onClick={() => handleNavClick('Допомога')}>Допомога</button>
-          <button type="button" onClick={() => scrollToSection('help')}>Контакт</button>
+          <button type="button" onClick={() => scrollToSection('resources')}>Контакт</button>
         </div>
 
         <div className="footer-links">
           <strong>Політики</strong>
-          <button type="button" onClick={() => scrollToSection('help')}>Безпека та допомога</button>
+          <button type="button" onClick={() => scrollToSection('resources')}>Безпека та допомога</button>
           <button type="button" onClick={() => scrollToSection('about')}>Про ілюстрації</button>
+          <button type="button" onClick={() => handleNavClick('Про проект')}>Про проект</button>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© 2026 Тихе місце</span>
+          <span>Простір підтримки · українська версія</span>
+        </div>
+      </footer>
+
+      <button type="button" className="floating-help" onClick={() => scrollToSection('resources')}>
+        <span>🫶</span> Допомога зараз
+      </button>
+    </div>
+  )
+}
+
+export default App
