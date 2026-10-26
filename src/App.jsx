@@ -90,6 +90,7 @@ const watchClips = [
 
 const navItems = [
   'Головна',
+  'Ігри',
   'Активності',
   'Відеосвіти',
   'Перевірка',
@@ -101,6 +102,7 @@ const navItems = [
 
 const sectionMap = {
   Головна: 'home',
+  Ігри: 'playroom',
   Активності: 'activities',
   Відеосвіти: 'watch',
   Перевірка: 'check-in',
