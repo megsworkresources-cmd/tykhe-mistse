@@ -91,7 +91,7 @@ const navItems = [
 
 const sectionMap = {
   Головна: 'home',
-  Активності: 'activities',
+  Активності: 'skills',
   Перевірка: 'check-in',
   Допомога: 'help',
   'Для дорослих': 'adults',
@@ -102,6 +102,13 @@ function App() {
   const [activeNav, setActiveNav] = useState('Головна')
   const [menuOpen, setMenuOpen] = useState(false)
   const [language, setLanguage] = useState('UA')
+  const [feeling, setFeeling] = useState('')
+  const [activeTool, setActiveTool] = useState('draw')
+  const [exerciseStep, setExerciseStep] = useState(0)
+  const [selectedSkill, setSelectedSkill] = useState('')
+  const [brushColor, setBrushColor] = useState('#416b4c')
+  const [brushSize, setBrushSize] = useState(5)
+  const [isDrawing, setIsDrawing] = useState(false)
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -119,6 +126,33 @@ function App() {
     }
   }
 
+  const startDrawing = (event) => {
+    const canvas = event.currentTarget
+    const rect = canvas.getBoundingClientRect()
+    const ctx = canvas.getContext('2d')
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.strokeStyle = brushColor
+    ctx.lineWidth = brushSize
+    ctx.beginPath()
+    ctx.moveTo((event.clientX - rect.left) * (canvas.width / rect.width), (event.clientY - rect.top) * (canvas.height / rect.height))
+    setIsDrawing(true)
+  }
+  const draw = (event) => {
+    if (!isDrawing) return
+    const canvas = event.currentTarget
+    const rect = canvas.getBoundingClientRect()
+    const ctx = canvas.getContext('2d')
+    ctx.strokeStyle = brushColor
+    ctx.lineWidth = brushSize
+    ctx.lineTo((event.clientX - rect.left) * (canvas.width / rect.width), (event.clientY - rect.top) * (canvas.height / rect.height))
+    ctx.stroke()
+  }
+  const stopDrawing = () => setIsDrawing(false)
+  const clearDrawing = () => {
+    const canvas = document.getElementById('drawing-canvas')
+    if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+  }
   const toggleLanguage = () => {
     setLanguage((current) => (current === 'UA' ? 'EN' : 'UA'))
   }
@@ -232,10 +266,8 @@ function App() {
         <div className="feeling-strip" id="check-in">
           <div className="wrap strip-inner">
             <span>Як ти себе почуваєш зараз?</span>
-            <span className="feeling-word">Спокійно</span>
-            <span className="feeling-word">Тривожно</span>
-            <span className="feeling-word">Збуджено</span>
-            <span className="feeling-word">Сумно</span>
+            {['Спокійно','Тривожно','Збуджено','Сумно','Злюся','Не знаю'].map((item) => <button type="button" key={item} className={feeling === item ? 'feeling-word feeling-selected' : 'feeling-word'} onClick={() => setFeeling(item)}>{item}</button>)}
+            {feeling && <p className="feeling-response" role="status">Дякую, що поділився/поділилася. Не потрібно нічого змінювати просто зараз. Ти обрав/обрала: {feeling.toLowerCase()}.</p>}
           </div>
         </div>
 
@@ -260,6 +292,24 @@ function App() {
           </div>
         </section>
 
+ 
+        <section className="section wrap interactive-section" id="skills">
+          <div className="section-heading"><h2>Обери свій простір</h2><p>Натисни на будь-яку картку, щоб перейти до справжньої активності.</p></div>
+          <div className="tool-tabs" role="tablist" aria-label="Активності">
+            <button type="button" className={activeTool === 'draw' ? 'tool-tab selected' : 'tool-tab'} onClick={() => setActiveTool('draw')}>🎨 Малювання</button>
+            <button type="button" className={activeTool === 'skills' ? 'tool-tab selected' : 'tool-tab'} onClick={() => setActiveTool('skills')}>🌱 Навички</button>
+            <button type="button" className={activeTool === 'exercise' ? 'tool-tab selected' : 'tool-tab'} onClick={() => setActiveTool('exercise')}>🫧 Вправи</button>
+          </div>
+          {activeTool === 'draw' && <div className="interactive-panel">
+            <h3>Намалюй те, що відчуваєш</h3><p>Малюй пальцем на екрані або мишкою. Тут немає правильного чи неправильного малюнка.</p>
+            <div className="drawing-controls"><label>Колір <input aria-label="Колір пензля" type="color" value={brushColor} onChange={(e) => setBrushColor(e.target.value)} /></label><label>Розмір <input aria-label="Розмір пензля" type="range" min="2" max="20" value={brushSize} onChange={(e) => setBrushSize(Number(e.target.value))} /></label><button className="btn btn-quiet" type="button" onClick={clearDrawing}>Очистити малюнок</button></div>
+            <canvas id="drawing-canvas" width="1000" height="420" aria-label="Полотно для малювання" onPointerDown={(e) => {e.currentTarget.setPointerCapture(e.pointerId); startDrawing(e)}} onPointerMove={draw} onPointerUp={stopDrawing} onPointerCancel={stopDrawing} onPointerLeave={stopDrawing} />
+          </div>}
+          {activeTool === 'skills' && <div className="interactive-panel"><h3>Маленькі навички, які можна потренувати</h3><p>Обери одну навичку. Прочитай її та спробуй у власному темпі.</p><div className="skill-grid">
+            {[['Заземлення','Відчуй обидві стопи. Знайди навколо себе три речі, які бачиш.'],['Назвати емоцію','Спробуй сказати: «Зараз я відчуваю…». Не потрібно пояснювати чому.'],['М’яка пауза','Розслаб щелепу та опусти плечі настільки, наскільки комфортно.'],['Попросити допомогу','Можна сказати дорослому: «Мені важко. Побудь зі мною, будь ласка».']].map(([title,body]) => <button key={title} type="button" className={selectedSkill === title ? 'skill-card chosen' : 'skill-card'} onClick={() => setSelectedSkill(title)}><strong>{title}</strong><span>{body}</span></button>)}
+          </div>{selectedSkill && <p className="success-note" role="status">Твій вибір: {selectedSkill}. Можна спробувати зараз або повернутися пізніше.</p>}</div>}
+          {activeTool === 'exercise' && <div className="interactive-panel exercise-panel"><span className="exercise-count">ВПРАВА {exerciseStep + 1} З 4</span><h3>{[['Відчуй опору','Постав стопи на підлогу, якщо це зручно. Поміть, як поверхня підтримує тебе.'],['Поміть навколо','Знайди очима одну річ спокійного кольору. Роздивись її форму.'],['Плечі відпочивають','Якщо комфортно, підніми плечі до вух на мить, а потім м’яко відпусти.'],['Видих без зусиль','Зроби звичайний вдих і дозволь видиху бути трохи довшим. Не затримуй дихання.']][exerciseStep][0]}</h3><p>{[['Відчуй опору','Постав стопи на підлогу, якщо це зручно. Поміть, як поверхня підтримує тебе.'],['Поміть навколо','Знайди очима одну річ спокійного кольору. Роздивись її форму.'],['Плечі відпочивають','Якщо комфортно, підніми плечі до вух на мить, а потім м’яко відпусти.'],['Видих без зусиль','Зроби звичайний вдих і дозволь видиху бути трохи довшим. Не затримуй дихання.']][exerciseStep][1]}</p><div className="exercise-actions"><button type="button" className="btn btn-quiet" onClick={() => setExerciseStep((step) => Math.max(0, step - 1))} disabled={exerciseStep === 0}>Назад</button><button type="button" className="btn btn-primary" onClick={() => setExerciseStep((step) => (step + 1) % 4)}>{exerciseStep === 3 ? 'Почати знову' : 'Наступний крок →'}</button></div><p className="gentle-note">Зупинись або пропусти будь-яку дію, якщо вона тобі не підходить.</p></div>}
+        </section>
         <section className="quote-band">
           <div className="quote-mark">“</div>
           <p>Не все треба виправляти одразу. Достатньо лише на мить відчути себе в безпеці.</p>
