@@ -90,6 +90,7 @@ const watchClips = [
 const navItems = [
   'Головна',
   'Активності',
+  'Відеосвіти',
   'Перевірка',
   'Допомога',
   'Ресурси',
@@ -100,6 +101,7 @@ const navItems = [
 const sectionMap = {
   Головна: 'home',
   Активності: 'activities',
+  Відеосвіти: 'watch',
   Перевірка: 'check-in',
   Допомога: 'resources',
   Ресурси: 'resources',
@@ -512,7 +514,7 @@ function App() {
 
           <div className="world-grid">
             {worldCards.map((card) => (
-              <article className="world-card" key={card.title}>
+              <article className="world-card" key={card.title} role="button" tabIndex={0} aria-label={'Відкрити відеосвіт: ' + card.title} onClick={() => { setActiveWatch(worldCards.indexOf(card)); scrollToSection('watch') }} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setActiveWatch(worldCards.indexOf(card)); scrollToSection('watch') } }}>
                 <img src={card.image} alt={card.title} />
                 <div>
                   <span>ІЛЮСТРАЦІЯ</span>
