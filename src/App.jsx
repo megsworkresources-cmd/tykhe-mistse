@@ -220,14 +220,14 @@ function App() {
       <main>
         <section className="hero wrap" id="hero">
           <div className="hero-copy">
-            <div className="eyebrow">
-              <span />
-              <span>М’яка підтримка для дітей</span>
-            </div>
-
             <h1>
               Тихе <em>місце</em> для спокою й відновлення.
             </h1>
+
+            <div className="eyebrow hero-eyebrow-after-title">
+              <span />
+              <span>М’яка підтримка для дітей</span>
+            </div>
 
             <p className="hero-desc">
               Простір, де дитина може зупинитися, зібратись, обрати потрібну ритмічну активність
