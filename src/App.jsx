@@ -224,15 +224,15 @@ function App() {
               Тихе <em>місце</em> для спокою й відновлення.
             </h1>
 
-            <div className="eyebrow hero-eyebrow-after-title">
-              <span />
-              <span>М’яка підтримка для дітей</span>
-            </div>
-
             <p className="hero-desc">
               Простір, де дитина може зупинитися, зібратись, обрати потрібну ритмічну активність
               та відчути себе в безпеці — без тиску, нав’язливих сигналів і складних правил.
             </p>
+
+            <div className="hero-eyebrow-after-title" aria-label="М’яка підтримка для дітей">
+              <span aria-hidden="true">✦</span>
+              <span>М’яка підтримка для дітей</span>
+            </div>
 
             <div className="hero-actions">
               <button type="button" className="btn btn-primary" onClick={() => scrollToSection('check-in')}>
