@@ -250,3 +250,22 @@ h1,h2,h3{line-height:1.22}
 .hero-desc{position:relative;clear:both;margin-top:22px;line-height:1.8;max-width:46ch}
 .section-heading h2,.watch-heading h2,.adult-callout h2,.final-cta h2{line-height:1.2;text-wrap:pretty}
 @media(max-width:800px){.hero{align-items:start;gap:30px;padding-top:44px}.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:0}.hero .eyebrow{margin-bottom:18px;line-height:1.5}.hero h1{font-size:clamp(2.8rem,9.6vw,4.15rem);line-height:1.12;letter-spacing:-.04em;margin:0 0 7px}.hero-desc{margin:18px 0 24px;line-height:1.75}.hero-actions{row-gap:12px}.section-heading h2,.watch-heading h2{font-size:clamp(2rem,8vw,3rem);line-height:1.18}.adult-callout h2,.final-cta h2{line-height:1.18}}
+
+/* Hard override for hero headline collision: isolate title and supporting copy */
+#hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:0}
+#hero .hero-copy h1{display:block;position:relative;z-index:1;width:100%;max-width:100%;font-size:clamp(2.65rem,5.2vw,4.65rem);line-height:1.22!important;letter-spacing:-.035em;margin:0 0 26px!important;padding:0 0 2px;overflow:visible;text-wrap:balance}
+#hero .hero-copy .hero-desc{display:block;position:relative;z-index:1;width:100%;max-width:46ch;clear:both;margin:0 0 26px!important;padding:0;line-height:1.8!important;font-size:17px}
+#hero .hero-copy .eyebrow{position:relative;display:flex;line-height:1.6;margin:0 0 20px!important}
+#hero .hero-copy .hero-actions{position:relative;display:flex;flex-wrap:wrap;gap:12px;margin:0}
+@media(max-width:800px){
+ #hero.hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:28px;padding-top:40px}
+ #hero .hero-copy h1{font-size:clamp(2.55rem,10.3vw,3.5rem);line-height:1.2!important;margin-bottom:22px!important;letter-spacing:-.035em}
+ #hero .hero-copy .hero-desc{font-size:16px;line-height:1.75!important;margin-bottom:24px!important}
+ #hero .hero-copy .hero-actions{width:100%;align-items:stretch}
+ #hero .hero-copy .hero-actions .btn{min-height:50px}
+ #hero .hero-spark{position:relative;right:auto;bottom:auto;justify-self:end;margin:0 0 0 auto;max-width:100%;transform:none}
+}
+@media(min-width:801px){
+ #hero.hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ #hero .hero-copy h1{font-size:clamp(2.7rem,5.2vw,4.65rem)}
+}
