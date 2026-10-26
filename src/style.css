@@ -134,3 +134,28 @@ p{max-width:100%}
 .scene-garden{background:linear-gradient(#f6e8d2 0 55%,#d9e8d1 55%)}.garden-sun{position:absolute;right:18%;top:20%;width:43px;height:43px;border-radius:50%;background:#edc46e;box-shadow:0 0 0 10px rgba(237,196,110,.18);animation:soft-pulse 5s ease-in-out infinite}.garden-hill{position:absolute;bottom:0;width:72%;height:56%;border-radius:55% 55% 0 0}.hill-a{left:-9%;background:#b7d0a8;transform:rotate(-8deg)}.hill-b{right:-10%;height:43%;background:#7eaa7b;transform:rotate(8deg)}.garden-flower{position:absolute;bottom:27%;left:48%;font-size:42px;color:#fff2d3;text-shadow:0 2px 8px #607f5433;animation:soft-float 4.5s ease-in-out infinite}
 .scene-breath{min-height:220px;background:radial-gradient(circle at center,#f9efcf,#e3eddb 58%,#d6e4d0)}.breath-ring{position:absolute;width:120px;height:120px;border:2px solid rgba(89,130,88,.55);border-radius:50%;animation:breath-expand 5s ease-in-out infinite}.ring-front{width:78px;height:78px;border-color:rgba(195,151,86,.7);animation-delay:-2.5s}.breath-core{display:grid;place-items:center;min-width:78px;min-height:78px;padding:10px;border-radius:50%;background:#fff9e9;color:#496d4d;font-weight:800;font-size:13px;box-shadow:0 4px 20px rgba(73,95,59,.08);text-align:center}.scene-step-1 .ring-back,.scene-step-1 .ring-front{animation-duration:6s}.scene-step-2 .ring-back,.scene-step-2 .ring-front{animation-duration:7s}.scene-step-3 .ring-back,.scene-step-3 .ring-front{animation-duration:4s}
 @keyframes soft-orbit{from{rotate:0deg}to{rotate:360deg}}@keyframes soft-float{0%,100%{translate:0 0}50%{translate:0 -7px}}@keyframes soft-pulse{0%,100%{scale:1}50%{scale:1.08}}@keyframes breath-expand{0%,100%{transform:scale(.84);opacity:.65}50%{transform:scale(1.18);opacity:1}}@media(max-width:600px){.motion-scene{min-height:165px;margin-bottom:20px}.scene-breath{min-height:195px}.visuals-toggle-row{align-items:flex-start}.scene-caption{font-size:11px}}@media(prefers-reduced-motion:reduce){.scene-orbit,.scene-orb,.garden-sun,.garden-flower,.breath-ring{animation:none!important}.scene-video{display:none}}
+
+
+/* Verified Ukrainian child-support resource directory */
+.resources-section{padding:94px 0 82px;background:#f4f0e6;border-block:1px solid #e9e2d5;scroll-margin-top:92px}
+.resources-heading{align-items:flex-end;gap:36px;margin-bottom:30px}
+.resources-heading>div{max-width:620px}
+.resources-heading h2{font-size:clamp(2.2rem,4.5vw,3.5rem)}
+.resources-heading>p{max-width:390px;line-height:1.8}
+.resources-notice{background:#fffaf1;border:1px solid #e8d8bd;border-left:4px solid #c18d50;border-radius:18px;padding:22px 25px;margin-bottom:25px}
+.resources-notice strong{display:block;color:#4a5e47;font-size:16px;margin-bottom:7px}
+.resources-notice p{font-size:13px;line-height:1.75;margin-bottom:13px;max-width:950px}
+.resource-urgent-link{font-size:13px;font-weight:800;color:#3d6947;text-decoration:underline;text-underline-offset:3px}
+.resources-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.resource-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0;background:#fffdf8;border:1px solid #e7e1d6;border-radius:22px;padding:25px;box-shadow:0 5px 18px rgba(57,66,43,.035)}
+.resource-card h3{font-size:21px;margin:11px 0 10px;line-height:1.25}
+.resource-card p{font-size:13px;line-height:1.8;margin:0 0 14px}
+.resource-category{font-size:10px;line-height:1.5;letter-spacing:.09em;text-transform:uppercase;font-weight:850;color:#6c8267}
+.resource-card a{display:inline-flex;align-items:baseline;gap:7px;margin-top:auto;padding-top:12px;color:#356344;font-size:13px;font-weight:800;line-height:1.6;text-decoration:underline;text-decoration-color:#bfd0b9;text-underline-offset:4px}
+.resource-card a:hover,.resource-urgent-link:hover{color:#233f2c;text-decoration-color:currentColor}
+.resource-card .resource-secondary-link{margin-top:0;padding-top:7px;font-weight:700}
+.resource-card .resource-contact{padding:12px 13px;background:#f0f4e9;border-radius:12px;color:#4b604b;width:100%;font-size:12px}
+.resource-featured{border-color:#cddbc6;background:linear-gradient(145deg,#fffdf8,#f4f7ef)}
+.resources-footnote{font-size:11px;line-height:1.8;color:#6f786b;max-width:950px;margin:22px 0 0}
+@media(max-width:800px){.resources-section{padding:65px 0 58px}.resources-heading{display:block;margin-bottom:25px}.resources-heading>p{margin-top:16px}.resources-grid{grid-template-columns:1fr;gap:13px}.resource-card{padding:21px;border-radius:18px}.resource-card h3{font-size:20px}.resources-notice{padding:19px}.resources-heading h2{font-size:clamp(2rem,8vw,2.8rem)}}
+@media(prefers-reduced-motion:reduce){.resource-card{transition:none}}
