@@ -175,7 +175,7 @@ function App() {
           </span>
         </button>
 
-        <nav className={`nav ${menuOpen ? 'open' : ''}`} aria-label="Основна навігація">
+        <nav className={`nav ${menuOpen ? 'open' : ''}`} aria-label="Основна навігація" id="primary-navigation">
           {navItems.map((item) => (
             <button
               key={item}
@@ -196,7 +196,8 @@ function App() {
           <button
             type="button"
             className="menu-toggle"
-            aria-label="Menu"
+            aria-label={menuOpen ? "Закрити меню" : "Відкрити меню"}
+            aria-controls="primary-navigation"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
           >
@@ -297,7 +298,7 @@ function App() {
             <button type="button" className={activeTool === 'skills' ? 'tool-tab selected' : 'tool-tab'} onClick={() => setActiveTool('skills')}>🌱 Навички</button>
             <button type="button" className={activeTool === 'exercise' ? 'tool-tab selected' : 'tool-tab'} onClick={() => setActiveTool('exercise')}>🫧 Вправи</button>
           </div>
-          <div className="visuals-toggle-row"><span>М’які візуальні підказки</span><button type="button" className="visual-toggle" aria-pressed={showVisuals} onClick={() => setShowVisuals(v => !v)}>{showVisuals ? 'Сховати рух' : 'Показати рух'} <span aria-hidden="true">{showVisuals ? '◌' : '✦'}</span></button></div>
+          <div className="visuals-toggle-row"><span>М’які візуальні підказки</span><button type="button" className="visual-toggle" aria-pressed={showVisuals} onClick={() => setShowVisuals(v => !v)}>{showVisuals ? 'Сховати візуальні підказки' : 'Показати візуальні підказки'} <span aria-hidden="true">{showVisuals ? '◌' : '✦'}</span></button></div>
           {activeTool === 'draw' && <div className="interactive-panel">
             {showVisuals && <div className="motion-scene scene-doodle"><video className="scene-video" muted loop playsInline autoPlay preload="none" aria-label="Короткий заспокійливий відеокліп" poster="/artwork/thought-thread.svg"><source src="https://videos.pexels.com/video-files/855787/855787-hd_1920_1080_25fps.mp4" type="video/mp4" /></video><span className="scene-orbit orbit-one"/><span className="scene-orbit orbit-two"/><span className="scene-orb">✦</span><span className="scene-caption">Твій настрій може мати будь-яку форму</span></div>}
             <h3>Намалюй те, що відчуваєш</h3><p>Малюй пальцем на екрані або мишкою. Тут немає правильного чи неправильного малюнка.</p>
