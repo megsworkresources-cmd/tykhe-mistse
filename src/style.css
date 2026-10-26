@@ -177,7 +177,8 @@ p{max-width:100%}
 }
 @media(max-width:800px){
   .header{isolation:isolate}
-  .nav{top:calc(100% - 1px);max-height:calc(100dvh - 88px);padding-bottom:max(20px,env(safe-area-inset-bottom));overscroll-behavior:contain}
+  /* Keep the mobile menu closed until its toggle is pressed. The base .nav rule above sets display:flex, so this explicit override is required. */
+  .nav{display:none;top:calc(100% - 1px);max-height:calc(100dvh - 88px);padding-bottom:max(20px,env(safe-area-inset-bottom));overscroll-behavior:contain}
   .nav button{min-height:48px}
   .menu-toggle{flex:0 0 40px}
   .help-pill{flex:0 0 40px}
