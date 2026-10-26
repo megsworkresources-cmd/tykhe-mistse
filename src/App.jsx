@@ -101,7 +101,6 @@ const sectionMap = {
 function App() {
   const [activeNav, setActiveNav] = useState('Головна')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [language, setLanguage] = useState('UA')
   const [feeling, setFeeling] = useState('')
   const [activeTool, setActiveTool] = useState('draw')
   const [exerciseStep, setExerciseStep] = useState(0)
@@ -153,20 +152,13 @@ function App() {
     const canvas = document.getElementById('drawing-canvas')
     if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
   }
-  const toggleLanguage = () => {
-    setLanguage((current) => (current === 'UA' ? 'EN' : 'UA'))
-  }
 
   return (
     <div id="home">
       <div className="top-note">
         <span className="sun-dot">✦</span>
         <span>Тихе місце — український дитячий простір підтримки</span>
-        <div className="top-lang">
-          <button type="button" aria-label="Мова" onClick={toggleLanguage}>
-            <span>{language}</span>
-          </button>
-        </div>
+        <div className="top-lang"><span className="language-label" aria-label="Мова інтерфейсу">UA · Українська</span></div>
       </div>
 
       <header className="header">
@@ -229,7 +221,7 @@ function App() {
               <button type="button" className="btn btn-primary" onClick={() => scrollToSection('check-in')}>
                 Почати
               </button>
-              <button type="button" className="btn btn-quiet" onClick={() => scrollToSection('activities')}>
+              <button type="button" className="btn btn-quiet" onClick={() => { setActiveTool('draw'); scrollToSection('skills') }}>
                 Подивитись активності
               </button>
             </div>
@@ -284,8 +276,8 @@ function App() {
                 <div className="card-index">{feature.index}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
-                <button type="button" className="text-link" onClick={() => scrollToSection('help')}>
-                  Дізнатись більше <span>→</span>
+                <button type="button" className="text-link" onClick={() => { setActiveTool(feature.index === '01' ? 'draw' : feature.index === '02' ? 'exercise' : 'skills'); scrollToSection('skills') }}>
+                  Спробувати <span>→</span>
                 </button>
               </article>
             ))}
@@ -391,7 +383,7 @@ function App() {
               <span>Готовність до наступного кроку</span>
             </div>
             <h2>Почніть із малого — з одного спокійного моменту.</h2>
-            <p>Це чернетка, тому вона все ще потребує технічної перевірки, доступності та експертного перегляду, але вже готова до короткого практичного використання.</p>
+            <p>Обери коротку вправу, потренуй навичку або малюй у власному темпі. Будь-яку активність можна пропустити.</p>
           </div>
           <div className="final-sun">☼</div>
           <button type="button" className="btn btn-dark" onClick={() => scrollToSection('help')}>
@@ -448,15 +440,14 @@ function App() {
 
         <div className="footer-links">
           <strong>Політики</strong>
-          <button type="button">Приватність</button>
-          <button type="button">Доступність</button>
-          <button type="button">Умови</button>
+          <button type="button" onClick={() => scrollToSection('help')}>Безпека та допомога</button>
+          <button type="button" onClick={() => scrollToSection('about')}>Про ілюстрації</button>
           <button type="button" onClick={() => handleNavClick('Про проект')}>Про проект</button>
         </div>
 
         <div className="footer-bottom">
           <span>© 2026 Тихе місце</span>
-          <span>Чернетка для оцінки</span>
+          <span>Простір підтримки · українська версія</span>
         </div>
       </footer>
 
