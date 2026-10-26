@@ -188,3 +188,57 @@ p{max-width:100%}
 @media(prefers-reduced-motion:reduce){
   .nav,.nav button{scroll-behavior:auto!important;transition:none!important}
 }
+
+
+/* Touch-first interaction and immersive watch room */
+button,a,summary,.world-card,.feature-card,.resource-card{ -webkit-tap-highlight-color: transparent; }
+button{ touch-action: manipulation; }
+#drawing-canvas{touch-action:none;display:block;width:100%;height:auto;min-height:220px;border:1px solid #e3e7d9;border-radius:20px;background:rgba(255,255,255,.72);cursor:crosshair}
+.watch-section{padding:92px 0 86px;background:radial-gradient(ellipse at 12% 15%,#e9f1df 0,transparent 35%),radial-gradient(ellipse at 90% 75%,#f5e2cf 0,transparent 32%),#f8f4eb;overflow:hidden}
+.watch-heading{align-items:flex-end}
+.watch-heading h2 em{color:#769776}
+.watch-experience{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.85fr);gap:20px;align-items:stretch}
+.watch-player-wrap{position:relative;min-height:420px;overflow:hidden;border-radius:28px;background:#25372b;box-shadow:0 20px 50px #2f3d321b;isolation:isolate}
+.watch-player{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#24362b}
+.watch-player-wrap:after{content:"";position:absolute;inset:40% 0 0;pointer-events:none;background:linear-gradient(transparent,rgba(14,27,19,.8))}
+.watch-player-caption{position:absolute;z-index:2;left:24px;right:24px;bottom:25px;color:white;pointer-events:none}
+.watch-player-caption span{font-size:10px;font-weight:800;letter-spacing:.13em;color:#f1dfb9}
+.watch-player-caption strong{display:block;font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.15;margin:9px 0}
+.watch-player-caption p{color:#f8f5e9;font-size:13px;margin:0;max-width:440px}
+.watch-focus-toggle{position:absolute;z-index:4;top:14px;right:14px;min-height:44px;padding:0 15px;border:1px solid #ffffff75;border-radius:99px;background:#17271db8;color:white;font-weight:750;font-size:12px;backdrop-filter:blur(12px)}
+.watch-choices{display:flex;flex-direction:column;gap:10px}
+.watch-choice{width:100%;min-height:88px;display:grid;grid-template-columns:62px minmax(0,1fr) 20px;align-items:center;gap:12px;text-align:left;border:1px solid #e6e3d7;border-radius:19px;background:#fffdf8;padding:12px;color:var(--ink);transition:transform .18s,border-color .18s,background .18s}
+.watch-choice:hover,.watch-choice:focus-visible{transform:translateY(-2px);border-color:#9db69a}
+.watch-choice-active{background:#e8f0e1;border-color:#9db69a;box-shadow:inset 0 0 0 1px #9db69a}
+.watch-choice-art{height:62px;border-radius:15px;background:linear-gradient(145deg,#d6e6d1,#f2d9b9);display:grid;place-items:center;font-size:25px;position:relative;overflow:hidden}
+.watch-choice-art i{position:absolute;width:32px;height:32px;border:1px solid #fff9;border-radius:50%;animation:watch-orbit 9s linear infinite}
+.watch-choice-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.watch-choice-copy small{font-size:9px;letter-spacing:.08em;color:#74826d;font-weight:800}
+.watch-choice-copy strong{font-size:14px}
+.watch-choice-copy>span{font-size:11px;color:#737c70;line-height:1.35}
+.watch-choice-arrow{color:#557a59;font-size:14px}
+.watch-reminder{margin-top:18px;color:#687567;font-size:12px;display:flex;align-items:center;gap:9px}
+.watch-reminder span{color:#b58a4f}
+.focus-mode{display:block}
+.focus-mode .watch-player-wrap{min-height:min(70vh,720px);border-radius:28px}
+@keyframes watch-orbit{to{transform:rotate(360deg) scale(1.12)}}
+@media(max-width:800px){
+ .watch-section{padding:65px 0 58px}
+ .watch-heading{display:block}
+ .watch-heading>p{margin-top:16px}
+ .watch-experience{grid-template-columns:minmax(0,1fr);gap:13px}
+ .watch-player-wrap{min-height:420px;height:62vh;max-height:590px;border-radius:23px}
+ .watch-player-caption{left:17px;right:17px;bottom:19px}
+ .watch-player-caption p{font-size:12px}
+ .watch-focus-toggle{top:10px;right:10px;min-height:46px}
+ .watch-choices{display:grid;grid-template-columns:1fr;gap:9px}
+ .watch-choice{min-height:82px;grid-template-columns:56px minmax(0,1fr) 16px;padding:10px;gap:10px;border-radius:16px}
+ .watch-choice-art{height:56px}
+ .watch-choice-copy>span{font-size:11px}
+ .watch-reminder{align-items:flex-start;line-height:1.6}
+ .focus-mode .watch-player-wrap{height:72vh;min-height:430px}
+ .drawing-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+ .drawing-controls label{min-height:44px;display:flex;align-items:center;gap:8px}
+ #drawing-canvas{min-height:250px}
+}
+@media(prefers-reduced-motion:reduce){.watch-choice-art i{animation:none}html{scroll-behavior:auto}*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
