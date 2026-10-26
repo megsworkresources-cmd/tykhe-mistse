@@ -92,9 +92,9 @@ const navItems = [
 
 const sectionMap = {
   Головна: 'home',
-  Активності: 'skills',
+  Активності: 'activities',
   Перевірка: 'check-in',
-  Допомога: 'help',
+  Допомога: 'resources',
   Ресурси: 'resources',
   'Для дорослих': 'adults',
   'Про проект': 'about'
@@ -115,7 +115,9 @@ function App() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const headerOffset = window.matchMedia('(max-width: 800px)').matches ? 82 : 98
+      const top = element.getBoundingClientRect().top + window.scrollY - headerOffset
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
     }
     setMenuOpen(false)
   }
@@ -187,7 +189,7 @@ function App() {
         </nav>
 
         <div className="head-actions">
-          <button type="button" className="help-pill" onClick={() => scrollToSection('help')}>
+          <button type="button" className="help-pill" onClick={() => scrollToSection('resources')}>
             <span>🫶</span>
             Допомога зараз
           </button>
@@ -518,20 +520,3 @@ function App() {
           <strong>Політики</strong>
           <button type="button" onClick={() => scrollToSection('help')}>Безпека та допомога</button>
           <button type="button" onClick={() => scrollToSection('about')}>Про ілюстрації</button>
-          <button type="button" onClick={() => handleNavClick('Про проект')}>Про проект</button>
-        </div>
-
-        <div className="footer-bottom">
-          <span>© 2026 Тихе місце</span>
-          <span>Простір підтримки · українська версія</span>
-        </div>
-      </footer>
-
-      <button type="button" className="floating-help" onClick={() => scrollToSection('help')}>
-        <span>🫶</span> Допомога зараз
-      </button>
-    </div>
-  )
-}
-
-export default App
