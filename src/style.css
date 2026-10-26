@@ -259,8 +259,15 @@ h1,h2,h3{line-height:1.22}
   min-width: 0;
 }
 #hero .hero-copy > .eyebrow {
-  margin: 0 0 20px;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 18px;
+  margin: 0 0 28px;
   line-height: 1.6;
+  overflow: visible;
 }
 #hero .hero-copy > h1 {
   display: block;
@@ -270,6 +277,9 @@ h1,h2,h3{line-height:1.22}
   height: auto;
   margin: 0 0 24px;
   padding: 0;
+  flex: 0 0 auto;
+  transform: none;
+  inset: auto;
   font-size: clamp(2.65rem, 5.2vw, 4.65rem);
   line-height: 1.2;
   letter-spacing: -0.035em;
@@ -312,10 +322,14 @@ h1,h2,h3{line-height:1.22}
     gap: 28px;
     padding-top: 40px;
   }
+  #hero .hero-copy > .eyebrow {
+    margin-bottom: 30px;
+  }
   #hero .hero-copy > h1 {
     font-size: clamp(2.35rem, 9.6vw, 3.5rem);
     line-height: 1.2;
-    margin-bottom: 22px;
+    margin-top: 0;
+    margin-bottom: 24px;
   }
   #hero .hero-copy > .hero-desc {
     font-size: 16px;
