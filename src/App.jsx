@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Playroom from './Playroom'
 
 const features = [
   {
@@ -279,6 +280,8 @@ function App() {
             {feeling && <p className="feeling-response" role="status">Дякую, що поділився/поділилася. Не потрібно нічого змінювати просто зараз. Ти обрав/обрала: {feeling.toLowerCase()}.</p>}
           </div>
         </div>
+
+        <Playroom />
 
         <section className="section wrap" id="activities">
           <div className="section-heading">
