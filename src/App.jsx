@@ -85,6 +85,7 @@ const navItems = [
   'Активності',
   'Перевірка',
   'Допомога',
+  'Ресурси',
   'Для дорослих',
   'Про проект'
 ]
@@ -94,6 +95,7 @@ const sectionMap = {
   Активності: 'skills',
   Перевірка: 'check-in',
   Допомога: 'help',
+  Ресурси: 'resources',
   'Для дорослих': 'adults',
   'Про проект': 'about'
 }
@@ -352,6 +354,77 @@ function App() {
               </div>
               <div className="adult-leaf">❀</div>
             </div>
+          </div>
+        </section>
+
+        <section className="resources-section" id="resources">
+          <div className="wrap">
+            <div className="section-heading resources-heading">
+              <div>
+                <div className="page-eyebrow"><span>Перевірені джерела підтримки</span></div>
+                <h2>Допомога дітям та родинам України</h2>
+              </div>
+              <p>Якщо потрібна підтримка поза цим простором, ці організації працюють із дітьми та родинами, які постраждали від війни, переміщення, втрати або інших складних обставин.</p>
+            </div>
+            <div className="resources-notice">
+              <strong>Потрібна допомога просто зараз?</strong>
+              <p>Якщо дитина в безпосередній небезпеці, зверніться до місцевих екстрених служб або до надійного дорослого поруч. Телефонні лінії та доступність можуть змінюватися — перевіряйте актуальні умови на офіційних сайтах. Якщо ви за межами України, уточніть, чи доступні українські номери з вашої країни.</p>
+              <a className="resource-urgent-link" href="https://la-strada.org.ua/en/kontakty" target="_blank" rel="noreferrer">Контакти дитячої гарячої лінії La Strada-Україна <span aria-hidden="true">↗</span></a>
+            </div>
+            <div className="resources-grid">
+              <article className="resource-card resource-featured">
+                <span className="resource-category">Психологічна підтримка</span>
+                <h3>Голоси дітей · Voices of Children</h3>
+                <p>Український фонд, що надає дітям і батькам психологічну та психосоціальну підтримку, зокрема індивідуальні й групові консультації, арттерапію та допомогу через регіональні центри.</p>
+                <p className="resource-contact"><strong>Телефон підтримки в Україні:</strong> 0 800 210 106. На офіційному сайті вказані години роботи та онлайн-канали.</p>
+                <a href="https://voices.org.ua/en" target="_blank" rel="noreferrer">Відкрити сайт і способи звернення <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Захист дітей · консультації</span>
+                <h3>La Strada-Україна</h3>
+                <p>Національна дитяча та молодіжна гаряча лінія; консультації щодо прав дитини, насильства, експлуатації та складних життєвих ситуацій. На сайті є телефонні й онлайн-канали зв’язку.</p>
+                <p className="resource-contact"><strong>Номери в Україні:</strong> 0 800 500 225 або 116 111. Перевірте актуальні години й доступність на офіційній сторінці.</p>
+                <a href="https://la-strada.org.ua/en/kontakty" target="_blank" rel="noreferrer">Контакти та канали звернення <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Гуманітарна допомога · освіта · здоров’я</span>
+                <h3>UNICEF Україна</h3>
+                <p>Підтримка дітей і родин у сфері захисту дітей, освіти, охорони здоров’я, психосоціальної допомоги, води та санітарії. Програми доступні в Україні й через партнерів у країнах, що приймають українських біженців.</p>
+                <a href="https://www.unicef.org/ukraine/en/what-we-do" target="_blank" rel="noreferrer">Програми UNICEF в Україні <span aria-hidden="true">↗</span></a>
+                <a className="resource-secondary-link" href="https://www.unicef.org/ukraine/en/spilno-social-support" target="_blank" rel="noreferrer">Програма соціальної підтримки «Спільно» <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Безпека · навчання · психічне здоров’я</span>
+                <h3>Save the Children</h3>
+                <p>Допомагає дітям і родинам, постраждалим від війни, зокрема через безпечні простори для дітей, доступ до освіти, психосоціальну підтримку та базову гуманітарну допомогу.</p>
+                <a href="https://www.savethechildren.net/ukraine" target="_blank" rel="noreferrer">Програми в Україні <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Сімейна підтримка · альтернативний догляд</span>
+                <h3>SOS Дитячі Містечка Україна</h3>
+                <p>Підтримує вразливі родини, щоб діти могли залишатися в безпечному сімейному середовищі, а також допомагає дітям без батьківського піклування та молоді, яка виходить із системи догляду.</p>
+                <a href="https://en.sos-ukraine.org/" target="_blank" rel="noreferrer">Послуги та програми <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Евакуація · відновлення · возз’єднання</span>
+                <h3>Save Ukraine</h3>
+                <p>Українська організація, що працює з дітьми та родинами, яких потрібно евакуювати або повернути в безпечне середовище; надає підтримку з житлом, відновленням, освітою та юридичними питаннями.</p>
+                <a href="https://saveukraine.org/" target="_blank" rel="noreferrer">Дізнатися про допомогу <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Психологічна допомога батькам і дітям</span>
+                <h3>Important</h3>
+                <p>Українська неприбуткова організація, що організовує психологічну підтримку для дітей і батьків, чиє життя постраждало від війни, зокрема групи підтримки.</p>
+                <a href="https://important.org.ua/en" target="_blank" rel="noreferrer">Дізнатися про підтримку <span aria-hidden="true">↗</span></a>
+              </article>
+              <article className="resource-card">
+                <span className="resource-category">Поради та контакти державних служб</span>
+                <h3>«Дитина не сама»</h3>
+                <p>Офіційний державний ресурс України з порадами й контактами служб щодо захисту дітей, зокрема в питаннях порушення прав, насильства та інших небезпечних ситуацій.</p>
+                <a href="https://dity.msp.gov.ua/eng/useful-tips" target="_blank" rel="noreferrer">Поради й контакти служб <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <p className="resources-footnote">Цей перелік — відправна точка, а не гарантія доступності послуг у кожному регіоні. Перевіряйте територію роботи, мову, вікові критерії, вартість і актуальність контактів безпосередньо в організації. Цей сайт не є службою екстреної допомоги й не замінює фахову оцінку потреб дитини.</p>
           </div>
         </section>
 
