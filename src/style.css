@@ -356,3 +356,44 @@ h1,h2,h3{line-height:1.22}
 #hero .hero-copy > .hero-actions{order:3}
 #hero .hero-copy > .trust-line{order:4}
 @media(max-width:800px){#hero .hero-copy > h1{margin-top:0;margin-bottom:12px}#hero .hero-copy > .hero-eyebrow-after-title{margin:0 0 24px}}
+
+/* Final mobile overlap correction: stack hero content explicitly, no flex ordering. */
+#hero .hero-copy {
+  display: block !important;
+}
+#hero .hero-copy > h1 {
+  position: relative !important;
+  display: block !important;
+  float: none !important;
+  clear: both !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  transform: none !important;
+  inset: auto !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+#hero .hero-copy > .hero-eyebrow-after-title {
+  position: relative !important;
+  display: flex !important;
+  float: none !important;
+  clear: both !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 20px !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  transform: none !important;
+  inset: auto !important;
+  overflow: visible !important;
+  line-height: 1.6 !important;
+  z-index: 2 !important;
+}
+#hero .hero-copy > .hero-desc {
+  position: relative !important;
+  clear: both !important;
+  margin: 0 0 24px !important;
+}
