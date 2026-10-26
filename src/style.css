@@ -251,33 +251,86 @@ h1,h2,h3{line-height:1.22}
 .section-heading h2,.watch-heading h2,.adult-callout h2,.final-cta h2{line-height:1.2;text-wrap:pretty}
 @media(max-width:800px){.hero{align-items:start;gap:30px;padding-top:44px}.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:0}.hero .eyebrow{margin-bottom:18px;line-height:1.5}.hero h1{font-size:clamp(2.8rem,9.6vw,4.15rem);line-height:1.12;letter-spacing:-.04em;margin:0 0 7px}.hero-desc{margin:18px 0 24px;line-height:1.75}.hero-actions{row-gap:12px}.section-heading h2,.watch-heading h2{font-size:clamp(2rem,8vw,3rem);line-height:1.18}.adult-callout h2,.final-cta h2{line-height:1.18}}
 
-/* Hard override for hero headline collision: isolate title and supporting copy */
-#hero .hero-copy{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:0}
-#hero .hero-copy h1{display:block;position:relative;z-index:1;width:100%;max-width:100%;font-size:clamp(2.65rem,5.2vw,4.65rem);line-height:1.22!important;letter-spacing:-.035em;margin:0 0 26px!important;padding:0 0 2px;overflow:visible;text-wrap:balance}
-#hero .hero-copy .hero-desc{display:block;position:relative;z-index:1;width:100%;max-width:46ch;clear:both;margin:0 0 26px!important;padding:0;line-height:1.8!important;font-size:17px}
-#hero .hero-copy .eyebrow{position:relative;display:flex;line-height:1.6;margin:0 0 20px!important}
-#hero .hero-copy .hero-actions{position:relative;display:flex;flex-wrap:wrap;gap:12px;margin:0}
-@media(max-width:800px){
- #hero.hero{display:grid;grid-template-columns:minmax(0,1fr);align-items:start;gap:28px;padding-top:40px}
- #hero .hero-copy h1{font-size:clamp(2.55rem,10.3vw,3.5rem);line-height:1.2!important;margin-bottom:22px!important;letter-spacing:-.035em}
- #hero .hero-copy .hero-desc{font-size:16px;line-height:1.75!important;margin-bottom:24px!important}
- #hero .hero-copy .hero-actions{width:100%;align-items:stretch}
- #hero .hero-copy .hero-actions .btn{min-height:50px}
- #hero .hero-spark{position:relative;right:auto;bottom:auto;justify-self:end;margin:0 0 0 auto;max-width:100%;transform:none}
+/* Hero layout: one source of truth for heading and supporting copy. */
+#hero .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
 }
-@media(min-width:801px){
- #hero.hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
- #hero .hero-copy h1{font-size:clamp(2.7rem,5.2vw,4.65rem)}
+#hero .hero-copy > .eyebrow {
+  margin: 0 0 20px;
+  line-height: 1.6;
 }
-
-
-/* FINAL HERO COLLISION FIX: force the headline and paragraph into separate normal-flow rows */
-#hero .hero-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:0!important;height:auto!important;overflow:visible!important}
-#hero .hero-copy h1{position:static!important;inset:auto!important;float:none!important;display:block!important;flex:0 0 auto!important;align-self:stretch!important;box-sizing:border-box!important;height:auto!important;min-height:0!important;max-height:none!important;transform:none!important;white-space:normal!important;overflow:visible!important;line-height:1.32!important;margin:0 0 30px!important;padding:0 0 4px!important;letter-spacing:-.025em!important}
-#hero .hero-copy h1 em{display:inline!important;position:static!important;transform:none!important}
-#hero .hero-copy .hero-desc{position:static!important;inset:auto!important;float:none!important;display:block!important;flex:0 0 auto!important;align-self:stretch!important;box-sizing:border-box!important;height:auto!important;min-height:0!important;max-height:none!important;transform:none!important;overflow:visible!important;clear:both!important;margin:0 0 28px!important;padding:0!important;line-height:1.85!important}
-#hero .hero-copy .hero-actions,#hero .hero-copy .trust-line{position:static!important;inset:auto!important;transform:none!important;flex:0 0 auto!important}
-@media(max-width:800px){
- #hero .hero-copy h1{font-size:clamp(2.35rem,9vw,3.25rem)!important;line-height:1.3!important;margin-bottom:25px!important;letter-spacing:-.025em!important}
- #hero .hero-copy .hero-desc{font-size:16px!important;line-height:1.8!important;margin-bottom:25px!important}
+#hero .hero-copy > h1 {
+  display: block;
+  position: static;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 24px;
+  padding: 0;
+  font-size: clamp(2.65rem, 5.2vw, 4.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  white-space: normal;
+  overflow: visible;
+  text-wrap: pretty;
+}
+#hero .hero-copy > h1 em {
+  display: inline;
+  position: static;
+  transform: none;
+}
+#hero .hero-copy > .hero-desc {
+  display: block;
+  position: static;
+  width: 100%;
+  max-width: 46ch;
+  height: auto;
+  margin: 0 0 26px;
+  padding: 0;
+  clear: both;
+  font-size: 17px;
+  line-height: 1.8;
+  overflow: visible;
+}
+#hero .hero-copy > .hero-actions,
+#hero .hero-copy > .trust-line {
+  position: static;
+  width: 100%;
+  margin-top: 0;
+  transform: none;
+}
+#hero .hero-copy > .trust-line {
+  margin-top: 24px;
+}
+@media (max-width: 800px) {
+  #hero.hero {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 28px;
+    padding-top: 40px;
+  }
+  #hero .hero-copy > h1 {
+    font-size: clamp(2.35rem, 9.6vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 22px;
+  }
+  #hero .hero-copy > .hero-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+  #hero .hero-copy > .hero-actions {
+    align-items: stretch;
+  }
+  #hero .hero-copy > .hero-actions .btn {
+    min-height: 50px;
+  }
+}
+@media (min-width: 801px) {
+  #hero.hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
