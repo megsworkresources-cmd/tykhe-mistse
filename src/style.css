@@ -397,3 +397,59 @@ h1,h2,h3{line-height:1.22}
   clear: both !important;
   margin: 0 0 24px !important;
 }
+
+
+/* Definitive hero label fix: the label is a plain content row after the description,
+   not an eyebrow/flex item near the heading. This avoids the original collision. */
+#hero .hero-copy > .hero-eyebrow-after-title {
+  display: inline-flex !important;
+  position: static !important;
+  float: none !important;
+  clear: both !important;
+  align-items: center !important;
+  gap: 9px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 0 26px !important;
+  padding: 9px 13px !important;
+  border: 1px solid #dce6d5 !important;
+  border-radius: 999px !important;
+  background: #f0f4e9 !important;
+  color: #3f6347 !important;
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  line-height: 1.45 !important;
+  letter-spacing: .01em !important;
+  white-space: normal !important;
+  transform: none !important;
+  inset: auto !important;
+  overflow-wrap: anywhere !important;
+  z-index: auto !important;
+}
+#hero .hero-copy > .hero-eyebrow-after-title > span:first-child {
+  display: inline-grid !important;
+  place-items: center !important;
+  flex: 0 0 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  background: transparent !important;
+  color: #b88943 !important;
+  border-radius: 0 !important;
+  font-size: 15px !important;
+}
+#hero .hero-copy > .hero-eyebrow-after-title > span:last-child {
+  display: block !important;
+  min-width: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  color: inherit !important;
+}
+@media(max-width:800px) {
+  #hero .hero-copy > .hero-eyebrow-after-title {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+    align-self: flex-start !important;
+  }
+}
