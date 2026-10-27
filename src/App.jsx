@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Playroom from './Playroom'
+import SunflowerGarden from './SunflowerGarden'
 
 const features = [
   {
@@ -91,6 +92,7 @@ const watchClips = [
 const navItems = [
   'Головна',
   'Ігри',
+  'Сад соняшників',
   'Активності',
   'Відеосвіти',
   'Перевірка',
@@ -103,6 +105,7 @@ const navItems = [
 const sectionMap = {
   Головна: 'home',
   Ігри: 'playroom',
+  'Сад соняшників': 'garden',
   Активності: 'activities',
   Відеосвіти: 'watch',
   Перевірка: 'check-in',
@@ -284,6 +287,8 @@ function App() {
         </div>
 
         <Playroom />
+
+        <SunflowerGarden />
 
         <section className="section wrap" id="activities">
           <div className="section-heading">

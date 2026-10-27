@@ -484,3 +484,37 @@ h1,h2,h3{line-height:1.22}
 @keyframes water-drift{from{transform:translateX(-20px)}to{transform:translateX(20px)}}
 @media(prefers-reduced-motion:reduce){.world-sun,.world-cloud,.world-flower,.world-water{animation:none}}
 @media(max-width:700px){.illustrated-world{min-height:240px}.watch-player-caption{padding:17px}.watch-player-caption strong{font-size:19px}}
+
+
+/* Synchronized sunflower garden */
+.sunflower-section{padding:78px 0;background:linear-gradient(180deg,#f8f5e9 0%,#eef4e8 100%);border-block:1px solid #e2e7d9;scroll-margin-top:100px}
+.sunflower-wrap{max-width:1060px}
+.sunflower-heading{text-align:center;max-width:740px;margin:0 auto 34px}
+.sunflower-kicker{display:inline-block;color:#416b4c;font-size:11px;font-weight:850;letter-spacing:.13em;margin-bottom:12px}
+.sunflower-heading h2{margin:0 0 12px;font-size:clamp(2rem,5vw,3.2rem);color:#294f37}
+.sunflower-heading p{max-width:620px;margin:0 auto;color:#596b59;font-size:16px;line-height:1.75}
+.sunflower-card{display:grid;grid-template-columns:minmax(200px,.75fr) minmax(0,1.25fr);gap:28px;align-items:center;max-width:850px;margin:0 auto;padding:clamp(20px,4vw,36px);background:#fffdf8;border:1px solid #dfe7d6;border-radius:26px;box-shadow:0 12px 30px rgba(49,82,53,.07)}
+.sunflower-illustration{position:relative;display:grid;place-items:center;min-height:200px;overflow:hidden;border-radius:22px;background:radial-gradient(circle at 50% 42%,#fff2b9 0 24%,transparent 25%),linear-gradient(155deg,#e7f1dc,#f8efd4)}
+.sunflower-illustration>span{position:relative;z-index:1;font-size:94px;filter:drop-shadow(0 8px 4px rgba(75,92,48,.12))}
+.sunflower-illustration i{position:absolute;right:17%;top:12%;font-size:35px;font-style:normal}
+.sunflower-illustration b{position:absolute;left:17%;bottom:15%;font-size:25px}
+.sunflower-copy h3{font-size:clamp(1.35rem,3vw,1.8rem);color:#2d5138;margin:0 0 10px}
+.sunflower-copy p{color:#596b59;line-height:1.7;font-size:15px;margin:0 0 12px}
+.sunflower-stage-note{font-size:13px!important;color:#71816e!important}
+.sunflower-button{min-height:48px;padding:12px 20px;border:0;border-radius:14px;background:#416b4c;color:#fffdf7;font-weight:800;font-size:14px;box-shadow:0 4px 0 #2d5138;cursor:pointer;margin-top:5px}
+.sunflower-button:hover{background:#315a3d}
+.sunflower-button:focus-visible{outline:3px solid #d8a933;outline-offset:3px}
+.sunflower-button:disabled{opacity:.65;cursor:wait}
+.sunflower-status{margin-top:12px!important;color:#315a3d!important;font-weight:700}
+.sunflower-privacy{max-width:760px;margin:22px auto 0;text-align:center;color:#61715f;font-size:12px;line-height:1.7}
+.community-garden-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:38px auto 14px;max-width:850px}
+.community-garden-heading h3{margin:0;color:#2d5138;font-size:clamp(1.15rem,3vw,1.5rem)}
+.community-garden-heading>span{flex:0 0 auto;padding:7px 11px;border-radius:999px;background:#f7e9a8;color:#4c5938;font-size:12px;font-weight:800}
+.community-garden-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:10px;max-width:850px;margin:0 auto;padding:20px;background:rgba(255,253,248,.76);border:1px solid #dfe7d6;border-radius:22px}
+.community-flower{display:grid;place-items:center;aspect-ratio:1;border-radius:17px;background:#f2f4e8;border:1px solid #e1e8d8}
+.community-flower span{font-size:clamp(25px,4vw,36px);filter:drop-shadow(0 3px 2px rgba(50,75,42,.12))}
+.community-flower-seed{background:#f7f0d8}.community-flower-sprout{background:#eaf2dc}.community-flower-bud{background:#e5f1e4}.community-flower-bloom{background:#f9efc4}
+.community-garden-loading,.community-garden-empty{max-width:850px;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;margin:0 auto;padding:20px;text-align:center;border:1px dashed #c8d7c0;border-radius:20px;color:#61715f;background:rgba(255,253,248,.65)}
+.community-garden-empty>span{font-size:34px}.community-garden-empty p{margin:0;max-width:470px;line-height:1.65;font-size:14px}
+@media(max-width:700px){.sunflower-section{padding:54px 0}.sunflower-heading{margin-bottom:24px}.sunflower-heading p{font-size:15px}.sunflower-card{grid-template-columns:1fr;gap:18px;border-radius:21px;padding:19px}.sunflower-illustration{min-height:150px}.sunflower-illustration>span{font-size:74px}.sunflower-copy{text-align:center}.community-garden-heading{align-items:flex-start;margin-top:28px}.community-garden-grid{grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px;padding:12px}.community-flower{border-radius:13px}}
+@media(prefers-reduced-motion:reduce){.sunflower-button{transition:none}}
