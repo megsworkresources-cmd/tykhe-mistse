@@ -1,13 +1,6 @@
 name: Deploy Convex production
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "convex/**"
-      - "package.json"
-      - "package-lock.json"
-      - ".github/workflows/deploy-convex.yml"
   workflow_dispatch:
 
 jobs:
