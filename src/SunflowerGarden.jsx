@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'convex/react'
 import { api } from '../convex/_generated/api'
 import { getGrowthStage } from './gardenGrowth'
@@ -21,6 +21,11 @@ function getDeviceKey() {
 }
 
 function LocalGarden() {
+  const [now, setNow] = useState(() => Date.now())
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 30_000)
+    return () => window.clearInterval(timer)
+  }, [])
   const [plantedAt, setPlantedAt] = useState(() => {
     const stored = window.localStorage.getItem('tykhe-mistse-local-sunflower-v1')
     return stored ? Number(stored) : null
@@ -30,7 +35,7 @@ function LocalGarden() {
     window.localStorage.setItem('tykhe-mistse-local-sunflower-v1', String(next))
     setPlantedAt(next)
   }
-  const stage = plantedAt ? getGrowthStage(plantedAt) : null
+  const stage = plantedAt ? getGrowthStage(plantedAt, now) : null
   return (
     <section className="sunflower-section" id="garden" aria-labelledby="sunflower-title">
       <div className="wrap sunflower-wrap">
@@ -55,6 +60,11 @@ function LocalGarden() {
 }
 
 function ConnectedGarden() {
+  const [now, setNow] = useState(() => Date.now())
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(Date.now()), 30_000)
+    return () => window.clearInterval(timer)
+  }, [])
   const [deviceKey] = useState(getDeviceKey)
   const flowers = useQuery(api.garden.listCommunity, {})
   const myFlower = useQuery(api.garden.getMyFlower, { deviceKey })
@@ -75,7 +85,7 @@ function ConnectedGarden() {
     }
   }
 
-  const myStage = myFlower ? STAGES[myFlower.stage] : null
+  const myStage = myFlower ? STAGES[getGrowthStage(myFlower.plantedAt, now)] : null
   return (
     <section className="sunflower-section" id="garden" aria-labelledby="sunflower-title">
       <div className="wrap sunflower-wrap">
@@ -105,7 +115,7 @@ function ConnectedGarden() {
         ) : (
           <div className="community-garden-grid" aria-label="Спільний сад соняшників">
             {flowers.map((flower, index) => {
-              const stage = STAGES[flower.stage]
+              const stage = STAGES[getGrowthStage(flower.plantedAt, now)]
               return <div className={`community-flower community-flower-${flower.stage}`} key={`${flower.plantedAt}-${index}`} title={stage.name} aria-label={stage.name}><span aria-hidden="true">{stage.icon}</span></div>
             })}
           </div>
